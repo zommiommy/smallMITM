@@ -24,7 +24,7 @@ before_script:
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 script:
-- pytest --cov=./dictances --cov-report xml:coverage.xml
+- pytest --cov=./smallMITM --cov-report xml:coverage.xml
 - sonar-scanner
 after_success:
 - coveralls
