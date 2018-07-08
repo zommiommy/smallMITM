@@ -1,50 +1,61 @@
 
+import socket
+from typing import Callable
+from threading import Thread
+import smallMITM.network_type as network_type
 
-class FakeClient():
 
+class FakeClient(Thread):
     def __init__(self):
+        super(FakeClient, self).__init__()
         self.fake_server      = None
         self.buffer_size      = 4096
-        self.from_host        = '0.0.0.0' # all ip
-        self.to_host          = '0.0.0.0' # all ip
-        self.from_port        = 80
-        self.to_port          = 80
-        self.parse_function   = lambda x: x
-        self.network_type     = network_type.tcp
+        self.host             = '0.0.0.0' # all ip
+        self.port             = 80
+        self.parse_function   = None
+        self.network_type     = network_type.TCP
 
-    def set_buffer_size(self,buffer_size: int) -> FakeClient:
+    def set_buffer_size(self,buffer_size: int):
         self.buffer_size = buffer_size
         return self
 
-    def set_parse_function(self,function: Callable[[str],str]) -> FakeClient:
-        self.set_parse_function(function)
+    def set_parse_function(self,function: Callable[[bytes,str],bytes]):
+        self.parse_function = function
         return self
 
-    def set_to_host(self,to_host: str) -> FakeClient:
-        self.to_host = to_host
+    def set_network_type(self,network_type):
+        self.network_type = network_type
         return self
 
-    def set_to_port(self,to_port: int) -> FakeClient:
-        self.to_port = to_port
+    def set_host(self,host: str):
+        self.host = host
         return self
 
-    def set_fake_server(self,fake_server: FakeServer) -> FakeClient:
+    def set_port(self,port: int):
+        self.port = port
+        return self
+
+    def set_fake_server(self,fake_server):
         self.fake_server = fake_server
         return self
 
-    def create(self) -> Proxy:
-        self.send_socket = self.network_type.get_socket()
-        self.send_socket.connect((self.to_host, self.to_port))
+    def create(self):
+        self.address = "[recived from {host}:{port}]".format(host=self.host,port=self.port)
+        self.send_socket = self.network_type().get_socket()
+        self.send_socket.connect((self.host, self.port))
 
     def send(self,data) -> None:
-        self.fake_server.send(data)
+        self.send_socket.send(data)
 
     def run(self) -> None:
-        while True:
-            self.accept_socket, addr = sock.accept()
-            data = self.accept_socket.recv(self.buffer_size)
-            if data:
-                data = self.parse_function(data)
-                # forward to client
-                if(self.fake_server):
-                    self.fake_server.send(data)
+        try:
+            while True:
+                data = self.send_socket.recv(self.buffer_size)
+                if data:
+                    data = self.parse_function(data,self.address)
+                    if(self.fake_server != None):
+                        self.fake_server.send(data)
+        except KeyboardInterrupt:
+            print("Closing the FakeClient")
+        finally:
+            self.send_socket.close()

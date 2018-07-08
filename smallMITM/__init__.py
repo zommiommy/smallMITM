@@ -1,1 +1,1 @@
-form .proxy import Proxy
+from .mitm import MITM
