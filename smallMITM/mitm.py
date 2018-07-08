@@ -7,7 +7,7 @@ from smallMITM.fake_server import FakeServer
 import smallMITM.network_type as network_type
 
 def deault_parse_function(data: bytes,intro: str) -> bytes:
-    print(intro + str(data),end="\n\n")
+    print("[Received from {intro}]: {data}\n\n".format(intro=intro,data=str(data)))
     return data
 
 class MITM(Thread):

@@ -52,13 +52,13 @@ mitm.set_buffer_size(1048576).set_host("127.0.0.1").set_client_port(8888).set_se
 ## parse_function
 It's the function that take the incoming data and return it to be forwarded.
 It take 2 arguments, the data in bytes and the intro which is a string in the form
-"[received from 127.0.0.1:8888]" to know from where the data is comming.
+"127.0.0.1:8888" to know from where the data is comming.
 ```python
 
 def my_parse_function(data: bytes,intro: str) -> bytes:
     print(intro + str(data),end="\n\n")
     return data
-    
+
 mitm.set_parse_function(my_parse_function)
 ```
 #### network_type
@@ -97,7 +97,7 @@ mitm.set_client_port(80)
 ```
 
 
-#### BufferSize:
+#### buffer_size:
 It's the dimension of the buffer that receive the data.
 It's the parameter passed to line:
 ```python
@@ -110,4 +110,3 @@ you can change the receiver buffer size:
 mitm.set_buffer_size(1048576)
 
 ```
-

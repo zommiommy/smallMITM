@@ -40,7 +40,7 @@ class FakeClient(Thread):
         return self
 
     def create(self):
-        self.address = "[received from {host}:{port}]".format(host=self.host,port=self.port)
+        self.address = "{host}:{port}".format(host=self.host,port=self.port)
         self.send_socket = self.network_type().get_socket()
         self.send_socket.connect((self.host, self.port))
 

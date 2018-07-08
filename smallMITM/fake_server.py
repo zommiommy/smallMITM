@@ -35,7 +35,7 @@ class FakeServer(Thread):
         return self
 
     def create(self):
-        self.address = "[received from 0.0.0.0:{port}]".format(port=self.port)
+        self.address = "0.0.0.0:{port}".format(port=self.port)
         self.listen_socket = self.network_type().get_socket()
         self.listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.listen_socket.bind(("0.0.0.0", self.port))
