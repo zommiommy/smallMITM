@@ -10,7 +10,7 @@ addons:
       secure: "tV/sLbMtziLjFx2OpNszNUvBx0mQOnHpwGJKs2jg6cLTwuJW/VLQYtj7Y8iAu/iWbhvvO2ISQoLGX6t3MOQ+x8/NAkgwfGcql/CjK0mRTkvPqh4+QlHbta8R+NXxLW9LYBIVptR4IxeXA1IUVoe7whgmH5OUI7g54Yvs8IhPBlNwwOuracoKXnQDuOthkio1NN4Eph9YgBiXrWLacPdNo8ZbY+vH83+3ixytVVfRVY3pbXkmTLWMS9mCP4o9xq+SwRabBEDKA/TUzdBXmT4SHqSnEI7zu4NTkqyMRcOGSvLzpTewD4JAPEh+alg7aPNe9sO3KUqmRV8QrWhIs+BK28PtkodiCgYRvUpxMNP8KmOH+3YaCHZu4FyjOAicnE7C9g8n6nypZofV9cw43rHlimYAtynK5fjp+KektflmDh7oy9G5P7+FHgRRJu3oYvptm460NszLEvTjzswzuPXQ41bykzjg++XSymD8DrcKLnU+0Et0A7yauceSFuST67bpVWTmaEHf6REniLLoPCKzmRwSW/ouoXFTUTmGaW//pSIzo9cvY+tt7T252YveIJlNImQqvT6kQxBV9JuOav8/tDI+4q3UpkhjR/Qq9DUjpe3vbBl4MW0tzh+4vTJ75DEB5y0O0hxXjkjMT1XZ+j45HA0Teh2LRBHLQm6SNGHzUgQ="
 language: python
 python:
-- '3.6'x
+- '3.6'
 cache:
   directories:
   - "$HOME/.sonar/cache"
