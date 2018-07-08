@@ -28,7 +28,7 @@ mitm.start()
 #[proxy(0.0.0.0:9000 -> 127.0.0.1:8888)] setting up
 #[proxy(0.0.0.0:9000 -> 127.0.0.1:8888)] connection established
 #[received from 127.0.0.1:8888]b"HTTP/1.1 200 OK\r\nServer: TornadoServer/5.0.2\r\nContent-Type:
-image/vnd.microsoft.icon\r\nDate: Sun, 08 Jul 2018 08:56:40 GMT\r\nContent-Se ...
+#image/vnd.microsoft.icon\r\nDate: Sun, 08 Jul 2018 08:56:40 GMT\r\nContent-Se ...
 
 ```
 
@@ -51,6 +51,8 @@ mitm.set_buffer_size(1048576).set_host("127.0.0.1").set_client_port(8888).set_se
 ```
 ## parse_function
 It's the function that take the incoming data and return it to be forwarded.
+It take 2 arguments, the data in bytes and the intro which is a string in the form
+"[received from 127.0.0.1:8888]" to know from where the data is comming.
 ```python
 
 def my_parse_function(data: bytes,intro: str) -> bytes:
