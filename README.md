@@ -1,7 +1,7 @@
 # smallMITM
 
 Easy to setup and configure package to do Man-In-The-Middle.
-## Example:
+## Basic Example:
 To setup the proxy that print the data that are exchanged and listen on port 9000 and forward everything to local host on port 8888 it's just as easy as:
 
 ```python
@@ -31,6 +31,21 @@ mitm.start()
 #image/vnd.microsoft.icon\r\nDate: Sun, 08 Jul 2018 08:56:40 GMT\r\nContent-Se ...
 
 ```
+
+## The Example:
+If you modify slightly the parse_function the MITM can became really powerful.
+If you define the function in a different file like myfunction.py you can import it and using the
+reload built-in function you can reload the file.
+This allow to modify the parse_function live without having to restart the MITM
+```python
+import myfunction
+
+def my_parse_function(data: bytes,intro: str) -> bytes:
+    reload(myfunction)
+    return myfunction.myfunction(data,intro)
+
+```
+
 
 ## Settings
 The MITM Class follow the builder pattern so that you can set settings both like this:
