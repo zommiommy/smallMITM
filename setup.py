@@ -27,7 +27,7 @@ def find_version(*file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
-__version__ = find_version("dictances", "__version__.py")
+__version__ = find_version("smallMITM", "__version__.py")
 
 setup(
     name="smallMITM",
