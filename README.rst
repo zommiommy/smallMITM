@@ -4,6 +4,8 @@
 smallMITM
 ==========
 
+|travis| |coveralls| |sonar_quality| |sonar_maintainability| |code_climate_maintainability| |code_climate_test_coverage| |pip|
+
 Easy to setup and configure package to do Man-In-The-Middle.
 
 Basic Example:
@@ -154,3 +156,25 @@ you can change the receiver buffer size:
 	mitm.set_buffer_size(1048576)
 
 
+.. |travis| image:: https://travis-ci.org/zommiommy/smallMITM.png
+   :target: https://travis-ci.org/zommiommy/smallMITM
+
+.. |coveralls| image:: https://coveralls.io/repos/github/zommiommy/smallMITM/badge.svg?branch=master
+    :target: https://coveralls.io/github/zommiommy/smallMITM
+
+.. |sonar_quality| image:: https://sonarcloud.io/api/project_badges/measure?project=dictances.lucacappelletti&metric=alert_status
+    :target: https://sonarcloud.io/dashboard/index/dictances.lucacappelletti
+
+.. |sonar_maintainability| image:: https://sonarcloud.io/api/project_badges/measure?project=dictances.lucacappelletti&metric=sqale_rating
+    :target: https://sonarcloud.io/dashboard/index/dictances.lucacappelletti
+
+.. |code_climate_maintainability| image:: https://api.codeclimate.com/v1/badges/25fb7c6119e188dbd12c/maintainability
+   :target: https://codeclimate.com/github/zommiommy/smallMITM/maintainability
+   :alt: Maintainability
+
+.. |code_climate_test_coverage| image:: https://api.codeclimate.com/v1/badges/25fb7c6119e188dbd12c/test_coverage
+   :target: https://codeclimate.com/github/zommiommy/smallMITM/test_coverage
+   :alt: Test Coverage
+
+.. |pip| image:: https://badge.fury.io/py/dictances.svg
+    :target: https://badge.fury.io/py/dictances
